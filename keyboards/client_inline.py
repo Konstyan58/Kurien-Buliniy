@@ -20,10 +20,17 @@ def buttons_for_svaz():
     list_for_all_buttons = InlineKeyboardMarkup()
 
     btn1 = InlineKeyboardButton('ИДЕЯ', callback_data='IDEA')
-    btn2 = InlineKeyboardButton('ЖАЛОБА', callback_data='REPORT')
+    btn2 = InlineKeyboardButton('ЖАЛОБА', callback_data='REPORT', url='https://github.com/')
     btn3 = InlineKeyboardButton('ВЕРНУТЬСЯ НАЗАД', callback_data='BACK')
     list_for_all_buttons.add(btn1)
     list_for_all_buttons.add(btn2)
+    list_for_all_buttons.add(btn3)
+
+    return list_for_all_buttons
+
+def button_for_back():
+    list_for_all_buttons = InlineKeyboardMarkup()
+    btn3 = InlineKeyboardButton('ВЕРНУТЬСЯ НАЗАД', callback_data='BACK')
     list_for_all_buttons.add(btn3)
 
     return list_for_all_buttons
