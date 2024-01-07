@@ -19,5 +19,17 @@ class Database:
     async def add_client(self, nedo_id, frst_or_lst_name, username, mail=None, sity=None):
         async with aiosqlite.connect(self.pute_k_fily) as connct:
             cursor = await connct.cursor()
-            await cursor.execute("""INSERT INTO Peoples (id, frst_or_lst_name, username, mail, sity) VALUES(?,?,?,?,?)""",(nedo_id, frst_or_lst_name, username, mail, sity))
+            await cursor.execute(
+                """INSERT INTO Peoples (id, frst_or_lst_name, username, mail, sity) VALUES(?,?,?,?,?)""",
+                (nedo_id, frst_or_lst_name, username, mail, sity))
             await connct.commit()
+
+    async def check_client(self, nedo_id):
+        async with aiosqlite.connect(self.pute_k_fily) as connct:
+            cursor = await connct.cursor()
+            await cursor.execute("""SELECT id,username FROM Peoples WHERE id = ?""", (nedo_id,))
+            answer = await cursor.fetchone()
+            if answer is None:
+                return False
+            else:
+                return True

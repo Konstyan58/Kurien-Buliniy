@@ -1,0 +1,1 @@
+nick = '/ban 6874867 ТОКСИЧИТЬ ЗАПРЕЩЕНО kldsgh7t khhm vnvb /'.split

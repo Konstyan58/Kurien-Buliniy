@@ -42,9 +42,11 @@ async def message_text(message: types.Message):
 
 async def send_welcome(message: types.Message):
     # await database.crt_new_tbl()
-    await database.add_client(nedo_id=message.from_user.id,
-                              frst_or_lst_name=f"{message.from_user.first_name}, {message.from_user.last_name}",
-                              username=message.from_user.username)
+    libo_tru_libo_fals = await database.check_client(nedo_id=message.from_user.id)
+    if libo_tru_libo_fals == False:
+        await database.add_client(nedo_id=message.from_user.id,
+                                  frst_or_lst_name=f"{message.from_user.first_name}, {message.from_user.last_name}",
+                                  username=message.from_user.username)
     await bot.delete_message(message.from_user.id, message.message_id)
 
     print(message)
@@ -100,6 +102,5 @@ def register_handlers_client(dp: Dispatcher):
 
 
 """
-
 
 """

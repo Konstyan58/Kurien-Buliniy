@@ -4,7 +4,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 def buttons_for_menu():
     list_for_all_buttons = InlineKeyboardMarkup()
 
-    btn1 = InlineKeyboardButton('НАЖМИ МЕНЯ', callback_data='CLICK_ME',url="https://youtu.be/dQw4w9WgXcQ")
+    btn1 = InlineKeyboardButton('НАЖМИ МЕНЯ', callback_data='CLICK_ME', url="https://youtu.be/dQw4w9WgXcQ")
     location = InlineKeyboardButton('ОТПРАВИТЬ ЛОКАЦИЮ', callback_data='SEND_LOCATION')
     svaz = InlineKeyboardButton('СВЯЗЬ С РАЗРАБОТЧИКОМ', callback_data='SVAZ_S_RAZRABOTCHIKOM')
 
@@ -13,7 +13,6 @@ def buttons_for_menu():
     list_for_all_buttons.add(svaz)
 
     return list_for_all_buttons
-
 
 
 def buttons_for_svaz():
@@ -27,6 +26,7 @@ def buttons_for_svaz():
     list_for_all_buttons.add(btn3)
 
     return list_for_all_buttons
+
 
 def button_for_back():
     list_for_all_buttons = InlineKeyboardMarkup()

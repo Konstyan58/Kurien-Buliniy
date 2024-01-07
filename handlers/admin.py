@@ -15,5 +15,16 @@ async def send_welcome(message: types.Message):
     #                     type='quiz')
 
 
+async def BAN(message: types.Message):
+    if message.from_user.id == 6274719470:
+        nick = message.text.split()
+        idyshick_cheloveka = nick[1]
+        prichina_bana = " ".join(nick[2:])
+        print(idyshick_cheloveka, prichina_bana)
+    else:
+        await bot.send_message(message.from_user.id, 'чел... ты не админ, ты не можешь банить')
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(send_welcome, commands=['something.py', 's', 'qest'])
+    dp.register_message_handler(BAN, commands=['ban'])
