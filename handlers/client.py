@@ -22,6 +22,11 @@ file_idys2 = ["https://prikolnye-kartinki.ru/img/picture/Jun/15/41b89f875a4e9dd7
 
 
 async def send_locate(message: types.Message):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=message.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(message.from_user.id, message.message_id)
+        await bot.send_message(message.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     cntry, ppltn, temp, vlsnst = s(message.location.latitude, message.location.longitude, API_TOKEN)
 
     latitude = message.location.latitude
@@ -34,6 +39,11 @@ async def send_locate(message: types.Message):
 
 
 async def message_text(message: types.Message):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=message.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(message.from_user.id, message.message_id)
+        await bot.send_message(message.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     file_iydishnik = message.photo[-1].file_id
     print(file_iydishnik)
     await message.photo[-1].download('img/am.jpg')
@@ -42,6 +52,12 @@ async def message_text(message: types.Message):
 
 async def send_welcome(message: types.Message):
     # await database.crt_new_tbl()
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=message.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(message.from_user.id, message.message_id)
+        await bot.send_message(message.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
+
     libo_tru_libo_fals = await database.check_client(nedo_id=message.from_user.id)
     if libo_tru_libo_fals == False:
         await database.add_client(nedo_id=message.from_user.id,
@@ -56,6 +72,11 @@ async def send_welcome(message: types.Message):
 
 
 async def func(callback: types.CallbackQuery):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=callback.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(callback.from_user.id, callback.message.message_id)
+        await bot.send_message(callback.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     await bot.delete_message(callback.from_user.id, callback.message.message_id)
     prinimanie_buttons = buttons_for_svaz()
     await bot.send_photo(callback.from_user.id, random.choice(file_idys), caption='шото не знаю шо', has_spoiler=False,
@@ -67,6 +88,11 @@ async def send_something(callback: types.CallbackQuery):
 
 
 async def back_to_menu(callback: types.CallbackQuery):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=callback.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(callback.from_user.id, callback.message.message_id)
+        await bot.send_message(callback.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     await bot.delete_message(callback.from_user.id, callback.message.message_id)
     prinimanie_buttons = buttons_for_menu()
     await bot.send_photo(callback.from_user.id, random.choice(file_idys), caption='шото не знаю шо', has_spoiler=False,
@@ -74,6 +100,11 @@ async def back_to_menu(callback: types.CallbackQuery):
 
 
 async def idea_handler(callback: types.CallbackQuery):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=callback.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(callback.from_user.id, callback.message.message_id)
+        await bot.send_message(callback.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     await StateIdea.wait_to_idea.set()
     await bot.delete_message(callback.from_user.id, callback.message.message_id)
     await bot.send_photo(callback.from_user.id, random.choice(file_idys2), caption='напиши свою идею',
@@ -81,6 +112,11 @@ async def idea_handler(callback: types.CallbackQuery):
 
 
 async def sending(message: types.Message, state: FSMContext):
+    libo_tru_libo_fals_of_ban = await database.check_client_for_ban(nedo_id=message.from_user.id)
+    if libo_tru_libo_fals_of_ban == True:
+        await bot.delete_message(message.from_user.id, message.message_id)
+        await bot.send_message(message.from_user.id, 'Вы забанены, если есть вопросы пишите: @The_Steve8')
+        return
     await bot.delete_message(message.from_user.id, message.message_id - 1)
     await bot.delete_message(message.from_user.id, message.message_id)
     back = button_for_back()
@@ -102,5 +138,5 @@ def register_handlers_client(dp: Dispatcher):
 
 
 """
-
+1. Сделать систему банов
 """
